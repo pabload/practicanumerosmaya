@@ -61,6 +61,9 @@ class NumeroEntrada extends StatelessWidget {
                       style: TextStyle(fontSize: 25, color: Colors.white),
                       decoration: InputDecoration(
                         hintText: 'Ingresa el numero en decimal',
+                        hintStyle: TextStyle(
+                          color: Colors.white
+                        ),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),

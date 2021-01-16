@@ -15,6 +15,12 @@ class PaginaPrincipal extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/fondomaya.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: Center(
                 child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -22,13 +28,21 @@ class PaginaPrincipal extends StatelessWidget {
               children: [
                 Text(
                   '!Practica los numeros en maya!',
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(color: Colors.white, fontSize: 50),
+                ),
+                Image.asset(
+                  'assets/mascara.png',
+                  width: 200,
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 FlatButton(
-                  child: Text('Comenzar'),
+                  child: Text(
+                    'Comenzar',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 50),
+                  ),
                   onPressed: () {
                     context.read<PaginaPracticaCubit>().generarNuevoNumero();
                     Navigator.push(

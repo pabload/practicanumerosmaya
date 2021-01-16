@@ -21,6 +21,10 @@ class PaginaPracticaCubit extends Cubit<PaginaPracticaEstado> {
             nivel1: Nivel(cacao: 1, circulos: 0, barras: 0),
             nivel2: Nivel(cacao: 1, circulos: 0, barras: 0),
             nivel3: Nivel(circulos: 1, barras: 0, cacao: 0)));
+      }else{
+        if(state.numeroAResolver<=19){
+          asignarNumeroANivel(state.numeroAResolver, 1);
+        }
       }
     }
     emit(state.copyWith(mayaADecimal: Random().nextBool()));

@@ -12,6 +12,10 @@ class PaginaPractica extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double anchoResultado = MediaQuery.of(context).size.width * .90;
+    double anchoNumeroEsperado = MediaQuery.of(context).size.width * .35;
+    double anchoNumeroEntrada = MediaQuery.of(context).size.width * .35;
+    double anchoTablero = MediaQuery.of(context).size.width * .60;
     return BlocBuilder<PaginaPracticaCubit, PaginaPracticaEstado>(
       builder: (context, state) {
         return Scaffold(
@@ -27,112 +31,88 @@ class PaginaPractica extends StatelessWidget {
               ),
             ),
             child: Center(
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      state.verResultado
-                          ? Resultado(
-                              anchoContenedor:
-                                  constraints.maxWidth <= 600 ? 400 : 500,
-                            )
-                          : Column(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text(
-                                          'Contesta',
-                                          style: TextStyle(
-                                              fontSize: 40,
-                                              color: Colors.white),
-                                        ),
-                                        NumeroEntrada(
-                                          anchoContenedor:
-                                              constraints.maxWidth <= 600
-                                                  ? 200
-                                                  : 500,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: constraints.maxWidth * .01,
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text(
-                                          'Resuelve',
-                                          style: TextStyle(
-                                              fontSize: 40,
-                                              color: Colors.white),
-                                        ),
-                                        NumeroEsperado(
-                                          anchoContenedor:
-                                              constraints.maxWidth <= 600
-                                                  ? 150
-                                                  : 500,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                if (state.mayaADecimal)
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'Simbolos',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 30),
-                                      ),
-                                      TableroNumerosMaya(
-                                        anchoContenedor:
-                                            constraints.maxWidth <= 600
-                                                ? 400
-                                                : 800,
-                                      ),
-                                    ],
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                state.verResultado
+                    ? Resultado(anchoContenedor: anchoResultado)
+                    : Column(
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'Contesta',
+                                    style: TextStyle(
+                                        fontSize: 40, color: Colors.white),
                                   ),
+                                  NumeroEntrada(
+                                      anchoContenedor: anchoNumeroEntrada),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Resuelve',
+                                    style: TextStyle(
+                                        fontSize: 40, color: Colors.white),
+                                  ),
+                                  NumeroEsperado(
+                                      anchoContenedor: anchoNumeroEsperado),
+                                ],
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          if (state.mayaADecimal)
+                            Column(
+                              children: [
+                                Text(
+                                  'Simbolos',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 30),
+                                ),
+                                TableroNumerosMaya(
+                                    anchoContenedor: anchoTablero),
                               ],
                             ),
-                      SizedBox(
-                        height: 20,
+                        ],
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 2.0, color: const Color(0xFFFFFFFF)),
-                        ),
-                        child: FlatButton(
-                          child: Text(
-                            state.verResultado ? 'Continuar' : 'Comprobar',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 45,
-                            ),
-                          ),
-                          onPressed: () {
-                            if (state.verResultado) {
-                              return context
-                                  .read<PaginaPracticaCubit>()
-                                  .generarNuevoNumero();
-                            }
-                            context
-                                .read<PaginaPracticaCubit>()
-                                .comprobarIgualdad();
-                          },
-                        ),
-                      )
-                    ],
-                  );
-                },
-              ),
-            ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border:
+                        Border.all(width: 2.0, color: const Color(0xFFFFFFFF)),
+                  ),
+                  child: FlatButton(
+                    child: Text(
+                      state.verResultado ? 'Continuar' : 'Comprobar',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (state.verResultado) {
+                        return context
+                            .read<PaginaPracticaCubit>()
+                            .generarNuevoNumero();
+                      }
+                      context.read<PaginaPracticaCubit>().comprobarIgualdad();
+                    },
+                  ),
+                )
+              ],
+            )),
           ),
         );
       },
