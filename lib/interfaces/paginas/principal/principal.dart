@@ -27,7 +27,8 @@ class PaginaPrincipal extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  '!Practica los numeros en maya!',
+                  '!Practica los números en maya!',
+                  textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 50),
                 ),
                 Image.asset(

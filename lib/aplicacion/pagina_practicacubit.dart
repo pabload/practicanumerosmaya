@@ -7,8 +7,9 @@ import 'package:practicanumerosmaya/dominio/nivel.dart';
 class PaginaPracticaCubit extends Cubit<PaginaPracticaEstado> {
   PaginaPracticaCubit() : super(PaginaPracticaEstado.inicial());
   generarNuevoNumero() {
-    emit(state.copyWith(verResultado:false));
-    emit(state.copyWith(numeroAResolver:Random().nextInt(400) + 1));
+    limpiarNiveles();
+    emit(state.copyWith(verResultado: false));
+    emit(state.copyWith(numeroAResolver: Random().nextInt(400) + 1));
     if (state.numeroAResolver > 19 && state.numeroAResolver != 400) {
       int cociente = (state.numeroAResolver / 20).toInt();
       int residuo = state.numeroAResolver % 20;
@@ -16,13 +17,12 @@ class PaginaPracticaCubit extends Cubit<PaginaPracticaEstado> {
       asignarNumeroANivel(cociente, 2);
     } else {
       if (state.numeroAResolver == 400) {
-        print('entro');
         emit(state.copyWith(
             nivel1: Nivel(cacao: 1, circulos: 0, barras: 0),
             nivel2: Nivel(cacao: 1, circulos: 0, barras: 0),
             nivel3: Nivel(circulos: 1, barras: 0, cacao: 0)));
-      }else{
-        if(state.numeroAResolver<=19){
+      } else {
+        if (state.numeroAResolver <= 19) {
           asignarNumeroANivel(state.numeroAResolver, 1);
         }
       }
@@ -31,21 +31,32 @@ class PaginaPracticaCubit extends Cubit<PaginaPracticaEstado> {
   }
 
   seleccionarNivel(int nivel) {
-    print('seleccionado');
     emit(state.copyWith(nivelseleccionado: nivel));
   }
 
-  asignarNumeroDecimal(int numero) {
-    emit(state.copyWith(entradaDecimal: numero));
+  asignarNumeroDecimal(String numero) {
+    RegExp _numeric = RegExp(r'^-?[0-9]+$');
+    if(_numeric.hasMatch(numero)){
+       emit(state.copyWith(entradaDecimal: int.parse(numero)));
+    }
   }
 
   limpiarEntradas() {
     emit(state.copyWith(
         entradaDecimal: 0,
-        nivelseleccionado:0,
+        nivelseleccionado: 0,
         entradanivel2: Nivel(circulos: 0, barras: 0, cacao: 0),
         entradanivel3: Nivel(circulos: 0, barras: 0, cacao: 0),
         entradanivel1: Nivel(circulos: 0, barras: 0, cacao: 0)));
+  }
+
+  limpiarNiveles() {
+    emit(state.copyWith(
+        entradaDecimal: 0,
+        nivelseleccionado: 0,
+        nivel2: Nivel(circulos: 0, barras: 0, cacao: 0),
+        nivel3: Nivel(circulos: 0, barras: 0, cacao: 0),
+        nivel1: Nivel(circulos: 0, barras: 0, cacao: 0)));
   }
 
   comprobarIgualdad() {
@@ -53,15 +64,15 @@ class PaginaPracticaCubit extends Cubit<PaginaPracticaEstado> {
       if (state.entradanivel1 == state.nivel1 &&
           state.entradanivel2 == state.nivel2 &&
           state.entradanivel3 == state.nivel3) {
-        emit(state.copyWith(correcto:true,verResultado:true));
+        emit(state.copyWith(correcto: true, verResultado: true));
       } else {
-        emit(state.copyWith(correcto:false,verResultado:true));
+        emit(state.copyWith(correcto: false, verResultado: true));
       }
     } else {
       if (state.entradaDecimal == state.numeroAResolver) {
-        emit(state.copyWith(correcto:true,verResultado:true));
+        emit(state.copyWith(correcto: true, verResultado: true));
       } else {
-        emit(state.copyWith(correcto:false,verResultado:true));
+        emit(state.copyWith(correcto: false, verResultado: true));
       }
     }
     limpiarEntradas();

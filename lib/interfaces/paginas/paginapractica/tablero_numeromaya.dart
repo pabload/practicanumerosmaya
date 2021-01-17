@@ -81,11 +81,10 @@ class TableroNumerosMaya extends StatelessWidget {
                         Border.all(width: 2.0, color: const Color(0xFFFFFFFF)),
                   ),
                   child: FlatButton(
-                    child: Text(
-                      'Limpiar nivel',
-                      style: TextStyle(
-                        color: Colors.white
-                      )
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text('Limpiar nivel',
+                          style: TextStyle(color: Colors.white)),
                     ),
                     onPressed: () {
                       context

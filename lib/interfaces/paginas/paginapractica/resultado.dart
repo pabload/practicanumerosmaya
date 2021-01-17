@@ -39,14 +39,14 @@ class Resultado extends StatelessWidget {
                   Icon(
                     Icons.check,
                     color: Colors.white,
-                    size: 70,
+                    size: 100,
                   ),
                 if (!state.correcto)
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Solucion: ',
+                        'Solución: ',
                         style: TextStyle(color: Colors.white, fontSize: 35),
                       ),
                       if (state.mayaADecimal)

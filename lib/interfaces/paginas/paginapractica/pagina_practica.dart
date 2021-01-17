@@ -20,7 +20,7 @@ class PaginaPractica extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Practica numeros maya'),
+            title: Text('Practica los números maya'),
             backgroundColor: Colors.green,
           ),
           body: Container(

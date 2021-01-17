@@ -57,6 +57,7 @@ class NumeroEntrada extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Center(
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 25, color: Colors.white),
                       decoration: InputDecoration(
@@ -74,7 +75,7 @@ class NumeroEntrada extends StatelessWidget {
                       onChanged: (numero) {
                         context
                             .read<PaginaPracticaCubit>()
-                            .asignarNumeroDecimal(int.parse(numero));
+                            .asignarNumeroDecimal(numero);
                       },
                     ),
                   ),

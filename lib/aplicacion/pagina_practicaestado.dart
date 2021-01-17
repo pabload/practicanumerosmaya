@@ -19,17 +19,16 @@ abstract class PaginaPracticaEstado with _$PaginaPracticaEstado {
     @required bool verResultado,
   }) = _PaginaPracticaEstado;
   factory PaginaPracticaEstado.inicial() => PaginaPracticaEstado(
-        numeroAResolver: 0,
-        mayaADecimal: false,
-        nivelseleccionado: 0,
-        nivel1: Nivel(circulos: 0, barras: 0, cacao: 0),
-        nivel2: Nivel(circulos: 0, barras: 0, cacao: 0),
-        nivel3: Nivel(circulos: 0, barras: 0, cacao: 0),
-        entradanivel1: Nivel(circulos: 0, barras: 0, cacao: 0),
-        entradanivel2: Nivel(circulos: 0, barras: 0, cacao: 0),
-        entradanivel3: Nivel(circulos: 0, barras: 0, cacao: 0),
-        entradaDecimal: 0,
-        correcto: false,
-        verResultado: false
-      );
+      numeroAResolver: 0,
+      mayaADecimal: false,
+      nivelseleccionado: 0,
+      nivel1: Nivel(circulos: 0, barras: 0, cacao: 0),
+      nivel2: Nivel(circulos: 0, barras: 0, cacao: 0),
+      nivel3: Nivel(circulos: 0, barras: 0, cacao: 0),
+      entradanivel1: Nivel(circulos: 0, barras: 0, cacao: 0),
+      entradanivel2: Nivel(circulos: 0, barras: 0, cacao: 0),
+      entradanivel3: Nivel(circulos: 0, barras: 0, cacao: 0),
+      entradaDecimal: 0,
+      correcto: false,
+      verResultado: false);
 }
