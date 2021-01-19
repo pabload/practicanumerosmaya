@@ -22,37 +22,60 @@ class PaginaPrincipal extends StatelessWidget {
               ),
             ),
             child: Center(
-                child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  '!Practica los números en maya!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 50),
-                ),
-                Image.asset(
-                  'assets/mascara.png',
-                  width: 200,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                FlatButton(
-                  child: Text(
-                    'Comenzar',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 50),
+                child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white,
                   ),
-                  onPressed: () {
-                    context.read<PaginaPracticaCubit>().generarNuevoNumero();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PaginaPractica()),
-                    );
-                  },
-                )
-              ],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage("assets/fondolibreta.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        '!Practica los números en maya!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle( fontSize: 50),
+                      ),
+                      Image.asset(
+                        'assets/mascara.png',
+                        width: 200,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      FlatButton(
+                        child: Text(
+                          'Comenzar',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 50),
+                        ),
+                        onPressed: () {
+                          context
+                              .read<PaginaPracticaCubit>()
+                              .generarNuevoNumero();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PaginaPractica()),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
             )),
           ),
         );
